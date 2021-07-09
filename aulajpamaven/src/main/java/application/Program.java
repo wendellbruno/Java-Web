@@ -10,18 +10,16 @@ public class Program {
 
 	public static void main(String[] args) {
 		
-		Pessoa p1 = new Pessoa(null,"Carlos","carlos@gmail.com");
-		Pessoa p2 = new Pessoa(null,"Maria","Maria@gmail.com");
-		Pessoa p3 = new Pessoa(null,"Pedro","Pedro@gmail.com");
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
 		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin(); // inicia uma trancição para o banco de dados.
-		em.persist(p1);
-		em.persist(p2);
-		em.persist(p3);
-		em.getTransaction().commit();// faz o commit no banco de dados.
+		
+		Pessoa p = em.find(Pessoa.class, 2); // busca no banco de dados o objeto pela classe e id
+		
+		System.out.println(p);
 		System.out.println("Pronto!");
+		em.close();
+		emf.close();
 		
 
 	}
