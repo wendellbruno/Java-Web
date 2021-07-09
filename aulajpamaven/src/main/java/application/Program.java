@@ -15,7 +15,9 @@ public class Program {
 		EntityManager em = emf.createEntityManager();
 		
 		Pessoa p = em.find(Pessoa.class, 2); // busca no banco de dados o objeto pela classe e id
-		
+		em.getTransaction().begin(); // inicia a transição com o banco
+		em.remove(p); // remove o objeto
+		em.getTransaction().commit(); // Faz o commit no banco.
 		System.out.println(p);
 		System.out.println("Pronto!");
 		em.close();
