@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.couse.entites.User;
 import com.example.couse.repositories.UserReposity;
+import com.example.couse.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class UserService {
@@ -22,7 +23,7 @@ public class UserService {
 
 	public User findById(Long id) {
 		Optional<User> obj = reposity.findById(id);
-		return obj.get();
+		return obj.orElseThrow(()-> new ResourceNotFoundException(id));
 	}
 
 	public User inset(User obj) {
