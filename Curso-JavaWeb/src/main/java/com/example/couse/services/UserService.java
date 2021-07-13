@@ -24,5 +24,9 @@ public class UserService {
 		Optional<User> obj = reposity.findById(id);
 		return obj.get();
 	}
+	
+	public User inset(User obj) {
+		return reposity.save(obj);
+	}
 
 }
