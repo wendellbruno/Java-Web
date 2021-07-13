@@ -19,14 +19,17 @@ public class UserService {
 		return reposity.findAll();
 
 	}
-	
+
 	public User findById(Long id) {
 		Optional<User> obj = reposity.findById(id);
 		return obj.get();
 	}
-	
+
 	public User inset(User obj) {
 		return reposity.save(obj);
 	}
 
+	public void delete(Long id) {
+		reposity.deleteById(id);
+	}
 }
