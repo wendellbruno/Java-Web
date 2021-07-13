@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.example.couse.entites.Category;
 import com.example.couse.entites.Order;
+import com.example.couse.entites.OrderItem;
 import com.example.couse.entites.Product;
 import com.example.couse.entites.User;
 import com.example.couse.entites.enums.OrderStatus;
 import com.example.couse.repositories.CategoryReposity;
+import com.example.couse.repositories.OrderItemReposity;
 import com.example.couse.repositories.OrderReposity;
 import com.example.couse.repositories.ProductReposity;
 import com.example.couse.repositories.UserReposity;
@@ -32,7 +34,10 @@ public class TestConfig implements CommandLineRunner{
 	
 	@Autowired
 	private ProductReposity productReposity;
-
+	
+	@Autowired
+	private OrderItemReposity orderItemReposity;
+	
 	@Override
 	public void run(String... args) throws Exception {
 		
@@ -69,6 +74,15 @@ public class TestConfig implements CommandLineRunner{
 		
 		userReposity.saveAll(Arrays.asList(u1,u2));
 		orderReposity.saveAll(Arrays.asList(o1,o2,o3));
+		
+		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+		
+		
+		orderItemReposity.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
+		
 	}
 	
 	
